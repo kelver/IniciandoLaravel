@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['prefix'=>'user'], function (){
+Route::group(['prefix'=>'pedidos'], function (){
     Route::get('/', function () {
         return 'Lista de usuários.';
     });
@@ -47,4 +47,13 @@ Route::get('extends/baz', function () {
 
 Route::get('foo/bar', function () {
     return view('foo.bar', ['foo'=>'asdf', 'bar'=>'1234', 'html'=>'<a>asd</a>', 'htmlSec'=>'<a>asd</a>']);
+});
+
+/*Usando Controller*/
+
+Route::group(['prefix'=>'user'], function (){
+    Route::get('/', ['uses'=>'UserController@index']);
+    Route::get('/add', ['uses'=>'UserController@create']);
+    Route::post('/add', ['uses'=>'UserController@post']);
+    Route::get('{id}', ['uses'=>'UserController@show']);
 });
